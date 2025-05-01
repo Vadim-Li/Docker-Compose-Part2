@@ -1,0 +1,16 @@
+version: '3.8'  # 可以保留但会被忽略
+
+services:
+  weather:
+    build: .
+    volumes:
+      - ./app:/app  # 添加这行实现开发热重载
+    environment:
+      - API_KEY=38a822c460d40d2ac32fa312333ad60d
+    ports:
+      - "5000:5000"
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
